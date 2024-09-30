@@ -1,2 +1,4 @@
-.vscode/
-*.out
+*~
+*.exe
+.cache/
+replit_zip_error_log.txt
