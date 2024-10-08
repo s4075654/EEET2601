@@ -8,16 +8,16 @@ typedef enum {
     scissors = 2,
 } value;
 
-value SelectARandomInteger() {
+const value SelectARandomInteger() {
     unsigned char a_random_integer;
 
     srandom(time(NULL));
     a_random_integer = random() % 3;
 
-    return((value)a_random_integer);
+    return((const value)a_random_integer);
 }
 
-signed char EnterAChoiceAsAnInteger() {
+const signed char EnterAChoiceAsAnInteger() {
     signed char an_integer = 0;
 
     printf("Enter a value: \n");
@@ -31,8 +31,8 @@ signed char EnterAChoiceAsAnInteger() {
 }
 
 void RockPaperScissors() {
-    unsigned char a_random_integer = SelectARandomInteger();
-    signed char an_integer = EnterAChoiceAsAnInteger();
+    const unsigned char a_random_integer = SelectARandomInteger();
+    const signed char an_integer = EnterAChoiceAsAnInteger();
 
     if (an_integer == -1) {
         return;
@@ -45,8 +45,7 @@ void RockPaperScissors() {
     
     if (an_integer == a_random_integer) {
         printf("The user draws against the computer.\n\n");
-    }
-    else {
+    } else {
         switch (a_random_integer) {
         case rock:
             if (an_integer == 1) {
