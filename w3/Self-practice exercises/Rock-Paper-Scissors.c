@@ -3,83 +3,83 @@
 #include <time.h>
 
 typedef enum {
-    rock = 0,
-    paper = 1,
-    scissors = 2,
+  rock = 0,
+  paper = 1,
+  scissors = 2,
 } value;
 
 const value SelectARandomInteger() {
-    unsigned char a_random_integer;
+  unsigned char a_random_integer;
 
-    srandom(time(NULL));
-    a_random_integer = random() % 3;
+  srandom(time(NULL));
+  a_random_integer = random() % 3;
 
-    return((const value)a_random_integer);
+  return ((const value)a_random_integer);
 }
 
 const signed char EnterAChoiceAsAnInteger() {
-    signed char an_integer = 0;
+  signed char an_integer = 0;
 
-    printf("Enter a value: \n");
-    printf("0 is used to represent: Rock\n");
-    printf("1 to represent Paper\n");
-    printf("2 to represent Scissors\n");
-    printf("-1: Exit\n");
-    scanf("%3hhd", &an_integer);
+  printf("Enter a value: \n");
+  printf("0 is used to represent: Rock\n");
+  printf("1 to represent Paper\n");
+  printf("2 to represent Scissors\n");
+  printf("-1: Exit\n");
+  scanf("%3hhd", &an_integer);
 
-    return(an_integer);
+  return (an_integer);
 }
 
 void RockPaperScissors() {
-    const unsigned char a_random_integer = SelectARandomInteger();
-    const signed char an_integer = EnterAChoiceAsAnInteger();
+  const unsigned char a_random_integer = SelectARandomInteger();
+  const signed char an_integer = EnterAChoiceAsAnInteger();
 
-    if (an_integer == -1) {
-        return;
+  if (an_integer == -1) {
+    return;
+  }
+
+  if (an_integer < -1 || an_integer > 2) {
+    printf("An error message.\n\n");
+    return (RockPaperScissors());
+  }
+
+  if (an_integer == a_random_integer) {
+    printf("The user draws against the computer.\n\n");
+  } else {
+    switch (a_random_integer) {
+    case rock:
+      if (an_integer == 1) {
+        printf("The user wins a rock.\n\n");
+      }
+      if (an_integer == 2) {
+        printf("The user loses.\n\n");
+      }
+      break;
+
+    case paper:
+      if (an_integer == 0) {
+        printf("The user loses.\n\n");
+      }
+      if (an_integer == 2) {
+        printf("The user wins a piece of paper.\n\n");
+      }
+      break;
+
+    case scissors:
+      if (an_integer == 0) {
+        printf("The user wins a pair of scissors.\n\n");
+      }
+      if (an_integer == 1) {
+        printf("The user loses.\n\n");
+      }
     }
-
-    if (an_integer < -1 || an_integer > 2) {
-        printf ("An error message.\n\n");
-        return(RockPaperScissors());
-    }
-    
-    if (an_integer == a_random_integer) {
-        printf("The user draws against the computer.\n\n");
-    } else {
-        switch (a_random_integer) {
-        case rock:
-            if (an_integer == 1) {
-                printf("The user wins a rock.\n\n");
-            }
-            if (an_integer == 2) {
-                printf("The user loses.\n\n");
-            }
-            break;
-
-        case paper:
-            if (an_integer == 0) {
-                printf("The user loses.\n\n");
-            }
-            if (an_integer == 2) {
-                printf("The user wins a piece of paper.\n\n");
-            }
-            break;
-
-        case scissors:
-            if (an_integer == 0) {
-                printf("The user wins a pair of scissors.\n\n");
-            }
-            if (an_integer == 1) {
-                printf("The user loses.\n\n");
-            }
-        }
-    }
-    return(RockPaperScissors());
+  }
+  return (RockPaperScissors());
 }
 
 int main() {
-    
-    RockPaperScissors();
 
-    return(0);
+  RockPaperScissors();
+
+  return (0);
 }
